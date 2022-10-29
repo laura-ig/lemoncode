@@ -1,0 +1,9 @@
+html {
+    --primary-color: #81A035;
+    --secondary-color: #395000;
+    --light-color: #ABC864;
+    --comp-color: #db723d;
+    --radius: 5px;
+    --shadow: -10px 10px 5px 0px rgba(70, 34, 0, 0.6);
+    --font: Georgia;
+}

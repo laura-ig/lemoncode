@@ -1,0 +1,114 @@
+@use "base" as *;
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  gap:30px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  box-sizing: border-box;
+  gap: 5px;
+  font-family: sans-serif;
+
+  .box {
+    border-radius: 5px;
+    padding: 20px;
+    color:#fff;
+  }
+  
+  &.blue .box {
+    background-color: $blue;
+    $i: 1;
+    @while $i <= 4 {
+      &.darken-#{$i} {
+        @if $i == 1 {
+          background: darken($blue, 10%);
+        } @else if $i == 2 {
+          background: darken($blue, 15%);
+        } @else if $i == 3 {
+          background: darken($blue, 20%);
+        } @else if $i == 4 {
+          background: darken($blue, 25%);
+        } 
+      }
+      &.lighten-#{$i} {
+        color:#000;
+        @if $i == 1 {
+          background: lighten($blue, 15%);
+        } @else if $i == 2 {
+          background: lighten($blue, 25%);
+        } @else if $i == 3 {
+          background: lighten($blue, 35%);
+        } @else if $i == 4 {
+          background: lighten($blue, 45%);
+        } 
+      }
+      $i: $i + 1;
+    }
+  }
+  &.green .box {
+    background-color: $green;
+    $i: 1;
+    @while $i <= 4 {
+      &.darken-#{$i} {
+        @if $i == 1 {
+          background: darken($green, 10%);
+        } @else if $i == 2 {
+          background: darken($green, 15%);
+        } @else if $i == 3 {
+          background: darken($green, 20%);
+        } @else if $i == 4 {
+          background: darken($green, 25%);
+        } 
+      }
+      &.lighten-#{$i} {
+        color:#000;
+        @if $i == 1 {
+          background: lighten($green, 15%);
+        } @else if $i == 2 {
+          background: lighten($green, 25%);
+        } @else if $i == 3 {
+          background: lighten($green, 35%);
+        } @else if $i == 4 {
+          background: lighten($green, 45%);
+        } 
+      }
+      $i: $i + 1;
+    }
+  }
+  &.red .box {
+    background-color: $red;
+    $i: 1;
+    @while $i <= 4 {
+      &.darken-#{$i} {
+        @if $i == 1 {
+          background: darken($red, 10%);
+        } @else if $i == 2 {
+          background: darken($red, 15%);
+        } @else if $i == 3 {
+          background: darken($red, 20%);
+        } @else if $i == 4 {
+          background: darken($red, 25%);
+        } 
+      }
+      &.lighten-#{$i} {
+        color:#000;
+        @if $i == 1 {
+          background: lighten($red, 15%);
+        } @else if $i == 2 {
+          background: lighten($red, 25%);
+        } @else if $i == 3 {
+          background: lighten($red, 35%);
+        } @else if $i == 4 {
+          background: lighten($red, 45%);
+        } 
+      }
+      $i: $i + 1;
+    }
+  }
+
+}

@@ -1,0 +1,9 @@
+html {
+    --primary-color: #00a1ff;
+    --secondary-color: #005588;
+    --light-color: #5FC2FD;
+    --comp-color: #ffad0a;
+    --radius: 0px;
+    --shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+    --font: Verdana;
+}

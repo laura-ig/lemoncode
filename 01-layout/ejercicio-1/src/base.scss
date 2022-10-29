@@ -1,0 +1,10 @@
+$red: #AC3A3A;
+$green: #489231;
+$blue: #1A4B94;
+
+@mixin shadow-effect($shadow:5px){
+    box-shadow: 6px 10px $shadow rgba(0,0,0,0.69);
+    &:hover {
+        box-shadow: 3px 5px $shadow rgba(0,0,0,0.69);
+    }
+}
