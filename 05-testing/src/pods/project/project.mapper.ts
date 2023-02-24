@@ -16,7 +16,7 @@ const mapEmployeeSummaryListFromApiToVm = (
 export const mapProjectFromApiToVm = (
   project: apiModel.Project
 ): viewModel.Project => {
-  return Boolean(project)
+  return Boolean(project) && Boolean(project.id)
     ? {
         ...project,
         employees: mapEmployeeSummaryListFromApiToVm(project.employees),
