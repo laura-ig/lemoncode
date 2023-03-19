@@ -32,6 +32,7 @@ export const ConfirmationDialogComponent: React.FunctionComponent<Props> = (
   };
 
   return (
+    <>
     <Dialog open={isOpen}>
       <DialogTitle>{title}</DialogTitle>
       <DialogContent>{children}</DialogContent>
@@ -44,5 +45,6 @@ export const ConfirmationDialogComponent: React.FunctionComponent<Props> = (
         </Button>
       </DialogActions>
     </Dialog>
+    </>
   );
 };
