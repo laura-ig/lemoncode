@@ -24,9 +24,9 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
   return (
     <Card>
       <CardHeader
-        avatar={<Avatar aria-label="Character">{character.rating}</Avatar>}
+        avatar={<Avatar aria-label="Character">{character.name.charAt(0)}</Avatar>}
         title={character.name}
-        subheader={character.address}
+        subheader={character.gender}
       />
       <CardContent>
         <div className={classes.content}>
@@ -36,7 +36,10 @@ export const CharacterCard: React.FunctionComponent<Props> = (props) => {
             style={{ height: 0, paddingTop: '56.25%' }}
           />
           <Typography variant="subtitle1" gutterBottom>
-            {character.description}
+            {character.species}
+          </Typography>
+          <Typography variant="subtitle1" gutterBottom>
+            {character.status}
           </Typography>
         </div>
       </CardContent>
