@@ -8,6 +8,7 @@ export const mockCharacterCollection: CharacterEntityApi[] = [
     species:"Human",
     type:"",
     gender:"Male",
+    bestSentences:"",
     origin: {
       name: "Earth (C-137)",
       url:"https://rickandmortyapi.com/api/location/1"
@@ -28,6 +29,7 @@ export const mockCharacterCollection: CharacterEntityApi[] = [
     species:"Human",
     type:"",
     gender:"Male",
+    bestSentences:"",
     origin: {
       name: "unknown",
       url:""
