@@ -31,8 +31,8 @@ export const CharacterComponent: React.FunctionComponent<Props> = (props) => {
           <TextFieldComponent name="name" label="Name" />
           <TextFieldComponent name="status" label="Status" />
           <TextFieldComponent name="species" label="Species" />
+          <TextFieldComponent name="type" label="Type" />
           <TextFieldComponent name="gender" label="Gender" />
-          <SelectComponent name="location" label="Location" items={cities} />
           <Button type="submit" variant="contained" color="primary">
             Save
           </Button>

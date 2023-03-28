@@ -20,11 +20,5 @@ export interface CharacterEntityApi {
 }
 
 export interface ResultApi {
-  info: {
-    count: number;
-    pages: number;
-    next?: string;
-    prev?: string;
-  }
   results: CharacterEntityApi[]
 }

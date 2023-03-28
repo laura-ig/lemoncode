@@ -1,14 +1,31 @@
 import { Character } from './character.api-model';
 import { Lookup } from 'common/models';
-import { mockCities, mockCharacterCollection } from './character.mock-data';
-import axios from 'axios';
+import { mockCities } from './character.mock-data';
+import { gql } from 'graphql-request';
+import { graphQLClient } from 'core/api/graphql.client';
 
-const url = 'https://rickandmortyapi.com/api/character';
+const url = 'https://rickandmortyapi.com/graphql';
 
 export const getCharacter = async (id: string): Promise<Character> => {
-  //return mockCharacterCollection.find((h) => h.id === id);
-  const { data } = await axios.get<Character>(`${url}/${id}`);
-  return data;
+  const query = gql`
+    query {
+      character(id: ${id}) {
+        id
+        name
+        status
+        species
+        type
+        gender
+        image
+        location {
+          name
+        }
+    }
+  }
+  `;
+
+  const { character } = await graphQLClient.request<{character:Character}>(query);
+  return character;
 };
 
 export const getCities = async (): Promise<Lookup[]> => {

@@ -1,20 +1,39 @@
 import { CharacterEntityApi, ResultApi } from './character-collection.api-model';
-//import { mockCharacterCollection } from './character-collection.mock-data';
-import Axios from 'axios';
+import { gql } from 'graphql-request';
+import { graphQLClient } from 'core/api/graphql.client';
 
-//let characterCollection = [...mockCharacterCollection];
+const url = 'https://rickandmortyapi.com/graphql';
 
-const url = 'https://rickandmortyapi.com/api/character';
+interface GetCharacterCollectionResponse {
+  characters: {
+    results: ResultApi;
+  }
+};
 
 export const getCharacterCollection = async (): Promise<CharacterEntityApi[]> => {
-  const { data } = await Axios.get<ResultApi>(url);
-  return data.results;
- // return characterCollection;
+  const query = gql`
+    query {
+    characters(page: 1) {
+      results {
+        id
+        name
+        status
+        species
+        type
+        gender
+        image
+        location {
+          name
+        }
+      }
+    }
+  }
+  `;
+
+  const { characters } = await graphQLClient.request<GetCharacterCollectionResponse>(query);
+  return characters.results;
 };
 
 export const deleteCharacter = async (id: string): Promise<boolean> => {
-  //characterCollection = characterCollection.filter((h) => h.id !== id);
-  //return true;
-  await Axios.delete(`${url}/${id}`);
   return true;
 };
