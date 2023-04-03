@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { OrganizationSearch } from "./organization-search";
 
 interface MemberEntity {
   id: string;
@@ -10,15 +11,23 @@ interface MemberEntity {
 export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
 
-  React.useEffect(() => {
-    fetch(`https://api.github.com/orgs/lemoncode/members`)
-      .then((response) => response.json())
-      .then((json) => setMembers(json));
-  }, []);
+  const handleSearch  = (organization: string) => {
+    fetch(`https://api.github.com/orgs/${organization}/members`)
+    .then((response) => {
+      if(response.ok)
+        return response.json();
+      else 
+        throw new Error("Error fetching members");
+    })
+    .then((json) => setMembers(json))
+    .catch(() => {});
+  };
 
   return (
     <>
-      <h2>Hello from List page</h2>+{" "}
+      <h2>List page</h2>
+      <OrganizationSearch onSearch={handleSearch}/>
+      <br/><br/>
       <div className="list-user-list-container">
         <span className="list-header">Avatar</span>
         <span className="list-header">Id</span>
