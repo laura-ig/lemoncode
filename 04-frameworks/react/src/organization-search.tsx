@@ -1,4 +1,5 @@
 import React from "react";
+import { MyCompanyContext } from "./app";
 
 interface Props {
     onSearch: (organization: string) => void;
@@ -6,20 +7,20 @@ interface Props {
 
 export const OrganizationSearch: React.FC<Props> = (props) => {
     const { onSearch } = props;
-    const [organization, setOrganization] = React.useState("lemoncode");
+    const { company, changeCompany } = React.useContext(MyCompanyContext);
 
     React.useEffect(() => {
-        onSearch(organization);
+        onSearch(company);
     }, []);
 
     return (<>
         <span>Organization</span>&nbsp;&nbsp;
         <input 
             type="text" 
-            value={organization} 
+            value={company} 
             onChange={ (e) => {
-                setOrganization(e.target.value);
+                changeCompany(e.target.value);
             }}/>&nbsp;&nbsp;
-        <button onClick={() => onSearch(organization)}>Search</button>
+        <button onClick={() => onSearch(company)}>Search</button>
     </>);
 };
