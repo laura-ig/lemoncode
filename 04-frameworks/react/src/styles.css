@@ -1,3 +1,7 @@
+body {
+  background-color: #eee;
+}
+
 .list-user-list-container {
   display: grid;
   grid-template-columns: 80px 1fr 3fr;

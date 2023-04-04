@@ -1,6 +1,17 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, generatePath } from "react-router-dom";
 import { OrganizationSearch } from "./organization-search";
+import { useNavigate } from "react-router-dom";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Divider from "@mui/material/Divider";
+import ListItemText from "@mui/material/ListItemText";
+import ListItemAvatar from "@mui/material/ListItemAvatar";
+import Avatar from "@mui/material/Avatar";
+import Typography from "@mui/material/Typography";
+import ListItemButton from "@mui/material/ListItemButton";
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
 
 interface MemberEntity {
   id: string;
@@ -10,6 +21,7 @@ interface MemberEntity {
 
 export const ListPage: React.FC = () => {
   const [members, setMembers] = React.useState<MemberEntity[]>([]);
+  const navigate = useNavigate();
 
   const handleSearch  = (organization: string) => {
     fetch(`https://api.github.com/orgs/${organization}/members`)
@@ -25,22 +37,42 @@ export const ListPage: React.FC = () => {
 
   return (
     <>
-      <h2>List page</h2>
-      <OrganizationSearch onSearch={handleSearch}/>
-      <br/><br/>
-      <div className="list-user-list-container">
-        <span className="list-header">Avatar</span>
-        <span className="list-header">Id</span>
-        <span className="list-header">Name</span>
-        {members.map((member) => (
-          <>
-            <img src={member.avatar_url} />
-            <span>{member.id}</span>
-            <Link to={`/detail/${member.login}`}>{member.login}</Link>
-          </>
-        ))}
-      </div>
-      <Link to="/detail">Navigate to detail page</Link>
+      <Card sx={{ padding: "20px" }} >
+        <CardContent>
+          <Typography variant="h2" component="h2">
+            List Page
+          </Typography>
+          <br/>
+          <OrganizationSearch onSearch={handleSearch} />
+          <br/><br/>
+          <div className="">
+            <List>
+              {members.map((member) => (
+                <>
+                  <ListItem key={member.id} disablePadding>
+                    <ListItemButton
+                      role={undefined}
+                      onClick={() => navigate(`/detail/${member.login}`)}
+                    >
+                      <ListItemAvatar>
+                        <Avatar alt={member.login} src={member.avatar_url} />
+                      </ListItemAvatar>
+                      <ListItemText
+                        primary={member.login}
+                        secondary={<Typography>ID: {member.id}</Typography>}
+                      />
+                    </ListItemButton>
+                  </ListItem>
+                  <Divider />
+                </>
+              ))}
+            </List>
+          </div>
+          <Typography variant="body1" >
+            <Link to="/detail">Navigate to detail page</Link>
+          </Typography>
+        </CardContent>
+      </Card>
     </>
   );
 };
