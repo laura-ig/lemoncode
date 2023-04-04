@@ -15,8 +15,6 @@ export const CharacterSearch: React.FC<Props> = (props) => {
         onSearch(character);
     }, []);
 
-    //onChange={(e) =>onChangeCharacter(e.target.value)}
-
     return (<>
         <TextField id="outlined-basic" label="Character Name" variant="outlined" size="small"
                     value={character}

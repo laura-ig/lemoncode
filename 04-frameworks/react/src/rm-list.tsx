@@ -18,20 +18,7 @@ interface CharacterEntity {
   name: string;
   status: string;
   species: string;
-  type: string;
-  gender: string;
-  origin: {
-    name: string;
-    url: string;
-  }
-  location: {
-    name: string;
-    url: string;
-  };
   image: string;
-  episode: string[];
-  url: string;
-  created: Date;
 }
 
 export const RMListPage: React.FC = () => {
@@ -56,6 +43,10 @@ export const RMListPage: React.FC = () => {
         <CardContent>
           <Typography variant="h2" component="h2">
             Rick and Morty Characters
+          </Typography>
+          <br/>
+          <Typography variant="body1" >
+            <Link to="/list">Navigate to Github List Page</Link>
           </Typography>
           <br/>
           <CharacterSearch onSearch={handleSearch} />

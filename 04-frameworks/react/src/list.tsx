@@ -43,6 +43,10 @@ export const ListPage: React.FC = () => {
             List Page
           </Typography>
           <br/>
+          <Typography variant="body1" >
+            <Link to="/rm-list">Navigate to Rick and Morty List</Link>
+          </Typography>
+          <br/>
           <OrganizationSearch onSearch={handleSearch} />
           <br/><br/>
             <List>
@@ -66,9 +70,7 @@ export const ListPage: React.FC = () => {
                 </>
               ))}
             </List>
-          <Typography variant="body1" >
-            <Link to="/detail">Navigate to detail page</Link>
-          </Typography>
+          
         </CardContent>
       </Card>
     </>
