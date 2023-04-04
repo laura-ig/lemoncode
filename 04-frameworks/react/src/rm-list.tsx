@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, generatePath } from "react-router-dom";
-import { OrganizationSearch } from "./organization-search";
+import { CharacterSearch } from "./character-search";
 import { useNavigate } from "react-router-dom";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
@@ -13,25 +13,40 @@ import ListItemButton from "@mui/material/ListItemButton";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 
-interface MemberEntity {
+interface CharacterEntity {
   id: string;
-  login: string;
-  avatar_url: string;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  }
+  location: {
+    name: string;
+    url: string;
+  };
+  image: string;
+  episode: string[];
+  url: string;
+  created: Date;
 }
 
-export const ListPage: React.FC = () => {
-  const [members, setMembers] = React.useState<MemberEntity[]>([]);
+export const RMListPage: React.FC = () => {
+  const [characters, setCharacters] = React.useState<CharacterEntity[]>([]);
   const navigate = useNavigate();
 
-  const handleSearch  = (organization: string) => {
-    fetch(`https://api.github.com/orgs/${organization}/members`)
+  const handleSearch  = (character: string) => {
+    fetch(`https://rickandmortyapi.com/api/character/?name=${character}`)
     .then((response) => {
       if(response.ok)
         return response.json();
       else 
-        throw new Error("Error fetching members");
+        throw new Error("Error fetching characters");
     })
-    .then((json) => setMembers(json))
+    .then((json) => setCharacters(json.results))
     .catch(() => {});
   };
 
@@ -40,25 +55,25 @@ export const ListPage: React.FC = () => {
       <Card sx={{ padding: "20px" }} >
         <CardContent>
           <Typography variant="h2" component="h2">
-            List Page
+            Rick and Morty Characters
           </Typography>
           <br/>
-          <OrganizationSearch onSearch={handleSearch} />
+          <CharacterSearch onSearch={handleSearch} />
           <br/><br/>
             <List>
-              {members.map((member) => (
+              {characters.map((ch) => (
                 <>
-                  <ListItem key={member.id} disablePadding>
+                  <ListItem key={ch.id} disablePadding>
                     <ListItemButton
                       role={undefined}
-                      onClick={() => navigate(`/detail/${member.login}`)}
+                      onClick={() => navigate(`/rm-detail/${ch.id}`)}
                     >
                       <ListItemAvatar>
-                        <Avatar alt={member.login} src={member.avatar_url} />
+                        <Avatar alt={ch.name} src={ch.image} />
                       </ListItemAvatar>
                       <ListItemText
-                        primary={member.login}
-                        secondary={<Typography>ID: {member.id}</Typography>}
+                        primary={ch.name}
+                        secondary={<Typography>{ch.species}</Typography>}
                       />
                     </ListItemButton>
                   </ListItem>
@@ -66,9 +81,6 @@ export const ListPage: React.FC = () => {
                 </>
               ))}
             </List>
-          <Typography variant="body1" >
-            <Link to="/detail">Navigate to detail page</Link>
-          </Typography>
         </CardContent>
       </Card>
     </>
