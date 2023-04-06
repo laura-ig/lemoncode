@@ -1,0 +1,30 @@
+<app-header></app-header>
+
+<mat-card>
+  <img mat-card-image src="https://compass-ssl.xboxlive.com/assets/58/2a/582a767b-e308-4afa-bb9e-4699dcd3a4ae.jpg?n=Profile_v2_Feature_Panel_Desktop.jpg">
+  <mat-card-content>
+    <h1>LOGIN</h1>
+    <form id="login-form" class="form">
+      <mat-form-field>
+        <mat-label>User</mat-label>
+        <input matInput placeholder="" value="" [(ngModel)]="username" [formControl]="userControl" required>
+        <mat-error *ngIf="userControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" placeholder="" value="" [(ngModel)]="pass" [formControl]="passControl" required>
+        <mat-error *ngIf="passControl.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <br>
+      <button mat-flat-button color="primary" type="submit" (click)="submit()">LOGIN</button>
+      <button type="button" mat-raised-button
+        matTooltip="{{correctUser}} - {{correctPass}}"
+        aria-label="Button that displays a hint">
+        Hint
+      </button>
+
+    </form>
+
+  </mat-card-content>
+</mat-card>

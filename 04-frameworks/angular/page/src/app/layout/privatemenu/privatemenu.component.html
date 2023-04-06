@@ -1,0 +1,25 @@
+<button class="main-menu" mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+  <mat-icon>menu</mat-icon>
+</button>
+<mat-menu #menu="matMenu">
+  <button mat-menu-item routerLinkActive="selected" routerLink="/dashboard">
+    <mat-icon>dashboard</mat-icon>
+    <span>Dashboard</span>
+  </button>
+  <button mat-menu-item routerLinkActive="selected" routerLink="/gallery">
+    <mat-icon>burst_mode</mat-icon>
+    <span>Gallery</span>
+  </button>
+  <button mat-menu-item routerLinkActive="selected" routerLink="/crud">
+    <mat-icon>edit</mat-icon>
+    <span>CRUD</span>
+  </button>
+  <button mat-menu-item routerLinkActive="selected" routerLink="/profile">
+    <mat-icon>face</mat-icon>
+    <span>Profile</span>
+  </button>
+  <button mat-menu-item routerLinkActive="selected" routerLink="/home" (click)="logout()">
+    <mat-icon>power_settings_new</mat-icon>
+    <span>Logout</span>
+  </button>
+</mat-menu>
