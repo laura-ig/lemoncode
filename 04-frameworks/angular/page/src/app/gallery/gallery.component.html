@@ -1,2 +1,55 @@
 <app-privateheader></app-privateheader>
+
 <h1>GALLERY</h1>
+
+  <mat-card>
+    <mat-card-content>
+      <div class="main-container">
+
+        <div class="selected-img-container">
+          <img
+          class="size-{{ size }}"
+          src="{{ selected.src }}"
+          >
+        </div>
+        <br>
+        <div class="buttons-container">
+          <button mat-fab color="primary" [disabled]="currentKey==0 || isPlaying ? true : null" (click)="previousBtn()">
+            <mat-icon>navigate_before</mat-icon>
+          </button>
+          <button mat-fab color="primary" [disabled]="currentKey==length-1 || isPlaying ? true : null" (click)="nextBtn()">
+            <mat-icon>navigate_next</mat-icon>
+          </button>
+          <button mat-fab color="accent" [disabled]="size==5 || isPlaying ? true : null" (click)="zoomIn()">
+            <mat-icon>zoom_in</mat-icon>
+          </button>
+          <button mat-fab color="accent" [disabled]="size==-4 || isPlaying ? true : null" (click)="zoomOut()">
+            <mat-icon>zoom_out</mat-icon>
+          </button>
+          <button mat-fab color="primary" *ngIf="!isPlaying" (click)="play()">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+          <button mat-fab color="warn" *ngIf="isPlaying" (click)="stop()">
+            <mat-icon>stop</mat-icon>
+          </button>
+        </div>
+        <br>
+        <div class="thumbnails-container">
+          <div
+            class=""
+            *ngFor="
+              let image of gallery
+            "
+          >
+              <img
+                src="{{ image.src }}"
+                alt="{{ image.title }}"
+                class="pag-img"
+                (click)="select(image.id)"
+              />
+          </div>
+        </div>
+      </div>
+    </mat-card-content>
+  </mat-card>
+
